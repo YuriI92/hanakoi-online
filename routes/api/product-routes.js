@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
     ]
   })
     .then(product => {
-      if (!product[0]) {
+      if (!product) {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
@@ -105,7 +105,7 @@ router.put('/:id', (req, res) => {
     },
   })
     .then((product) => {
-      if (!product[0]) {
+      if (!product) {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
@@ -150,7 +150,7 @@ router.delete('/:id', (req, res) => {
     }
   })
     .then(product => {
-      if (!product[0]) {
+      if (!product) {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
