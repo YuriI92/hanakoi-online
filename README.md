@@ -37,17 +37,17 @@ Click [here](https://drive.google.com/file/d/1hiFyOT_O5SmVn3YN9VnJ74-W9TYZ-LR-/v
     [Default Local Server] http://localhost:3001
       - Category<br/>
         [GET all/POST] /api/categories<br/>
-        [GET one/PUT/DEL] /api/categories/:id
+        [GET one/PUT/DEL] /api/categories/:id<br/>
         ![alt text](./assets/images/Sample-01_GET-categories.png)
         ![alt text](./assets/images/Sample-02_POST-categories.png)
       - Tag<br/>
         [GET all/POST] /api/tags<br/>
-        [GET one/PUT/DEL] /api/tags/:id
+        [GET one/PUT/DEL] /api/tags/:id<br/>
         ![alt text](./assets/images/Sample-03_GET-tags.png)
         ![alt text](./assets/images/Sample-04_POST-tags.png)
       - Product<br/>
         [GET all/POST] /api/products<br/>
-        [GET one/PUT/DEL] /api/products/:id
+        [GET one/PUT/DEL] /api/products/:id<br/>
         ![alt text](./assets/images/Sample-05_GET-products.png)
         ![alt text](./assets/images/Sample-06_POST-products.png)
 5. Press 'Ctrl' + 'c' keys to quit.
