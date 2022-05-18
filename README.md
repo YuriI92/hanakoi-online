@@ -24,13 +24,13 @@ Click [here]() for the demonstration video.
 1. Create `.env` file.
     - Rename `.env.EXAMPLE` file to `.env`.
     - Enter your MySQL username and password in the file.
-2. Create the database and seed data in your local server. (Replace sample data in the `seeds` folder to your data if necessary)
-    ```cd
-    node ./db/schema.sql
-    npm seed
+2. Create the database in your local server in MySQL shell.
     ```
-3. Start the application.
+    source ./db/schema.sql
+    ```
+3. Seed the sample data and Start the application. (Replace sample data in the `seeds` folder to your data if necessary)
     ```cd
+    npm run seed
     npm start
     ```
 4. GET/POST/PUT/DELETE routes in Insomnia using following url:
