@@ -18,14 +18,14 @@ router.get('/', (req, res) => {
         model: Tag,
         attributes: ['id', 'tag_name'],
         through: ProductTag,
-        as: 'tag_id'
+        as: 'tags'
       }
     ]
   })
-    .then(productData => res.json(productData))
+    .then(products => res.json(products))
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -47,20 +47,20 @@ router.get('/:id', (req, res) => {
         model: Tag,
         attributes: ['id', 'tag_name'],
         through: ProductTag,
-        as: 'tag_id'
+        as: 'tags'
       }
     ]
   })
-    .then(productData => {
-      if (!productData[0]) {
+    .then(product => {
+      if (!product[0]) {
         res.status(404).json({ message: 'No product found with this id' });
         return;
       }
-      res.json(productData);
+      res.json(product);
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -105,6 +105,10 @@ router.put('/:id', (req, res) => {
     },
   })
     .then((product) => {
+      if (!product[0]) {
+        res.status(404).json({ message: 'No product found with this id' });
+        return;
+      }
       // find all associated tags from ProductTag
       return ProductTag.findAll({ where: { product_id: req.params.id } });
     })
@@ -133,7 +137,7 @@ router.put('/:id', (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+      console.log(err);
       res.status(400).json(err);
     });
 });
@@ -145,10 +149,16 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(product => res.json(product))
+    .then(product => {
+      if (!product[0]) {
+        res.status(404).json({ message: 'No product found with this id' });
+        return;
+      }
+      res.json(product);
+    })
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 

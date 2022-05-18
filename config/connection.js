@@ -4,6 +4,8 @@ const Sequelize = require('sequelize');
 
 let sequelize;
 
+// if there is a url, use the url
+// if not, connect to the port using .env file information
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {

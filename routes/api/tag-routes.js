@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
         model: Product,
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
         through: ProductTag,
-        as: 'product_id'
+        as: 'products'
       }
     ]
   })
-    .then(tagData => res.json(tagData))
+    .then(tags => res.json(tags))
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -37,26 +37,30 @@ router.get('/:id', (req, res) => {
         model: Product,
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
         through: ProductTag,
-        as: 'product_id'
+        as: 'products'
       }
     ]
   })
-    .then(tagData => res.json(tagData))
+    .then(tag => {
+      if (!tag[0]) {
+        res.status(404).json({ message: 'No tag found with this id' });
+        return;
+      }
+      res.json(tag);
+    })
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 
 router.post('/', (req, res) => {
   // create a new tag
-  Tag.create({
-    tag_name: req.body.tag_name
-  })
-    .then(tagData => res.json(tagData))
+  Tag.create(req.body)
+    .then(tag => res.json(tag))
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -67,10 +71,16 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(tagData => res.json(tagData))
+    .then(tag => {
+      if (!tag[0]) {
+        res.status(404).json({ message: 'No tag found with this id' });
+        return;
+      }
+      res.json(tag);
+    })
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 
@@ -81,10 +91,16 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(tagData => res.json(tagData))
+    .then(tag => {
+      if (!tag[0]) {
+        res.status(404).json({ message: 'No tag found with this id' });
+        return;
+      }
+      res.json(tag);
+    })
     .catch(err => {
       console.log(err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 });
 

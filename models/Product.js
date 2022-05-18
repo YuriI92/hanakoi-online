@@ -7,6 +7,7 @@ const sequelize = require('../config/connection');
 class Product extends Model {}
 
 // set up fields and rules for Product model
+// Product columns: id, product_name, price, stock, category_id
 Product.init(
   {
     // define columns
